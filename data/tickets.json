@@ -1,0 +1,146 @@
+[
+  {
+    "id": "IT001",
+    "message": "My external monitor won't turn on.",
+    "expected_category": "hardware",
+    "expected_urgency": null,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": true
+  },
+  {
+    "id": "IT002",
+    "message": "My external monitor won't turn on, but I can continue working using my laptop screen.",
+    "expected_category": "hardware",
+    "expected_urgency": 1,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "IT003",
+    "message": "My laptop won't power on. All my work is blocked, I have no replacement device, and I need to present in ten minutes.",
+    "expected_category": "hardware",
+    "expected_urgency": 2,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "IT004",
+    "message": "One keycap is scratched. The keyboard works normally, and it doesn't affect my work.",
+    "expected_category": "hardware",
+    "expected_urgency": 0,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "IT005",
+    "message": "My authenticator codes are rejected.",
+    "expected_category": "identity_and_access",
+    "expected_urgency": null,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": true
+  },
+  {
+    "id": "IT006",
+    "message": "My authenticator codes are rejected, but my backup method works and I can continue working.",
+    "expected_category": "identity_and_access",
+    "expected_urgency": 1,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "IT007",
+    "message": "I'm locked out of my account with no backup sign-in method. All essential work is blocked, and I have a client meeting in ten minutes.",
+    "expected_category": "identity_and_access",
+    "expected_urgency": 2,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "IT008",
+    "message": "How do I change my password? I can sign in normally, and nothing is blocking my work.",
+    "expected_category": "identity_and_access",
+    "expected_urgency": 0,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "IT009",
+    "message": "My VPN keeps disconnecting.",
+    "expected_category": "network",
+    "expected_urgency": null,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": true
+  },
+  {
+    "id": "IT010",
+    "message": "Office Wi-Fi isn't working on my laptop, but a wired connection works and lets me continue working.",
+    "expected_category": "network",
+    "expected_urgency": 1,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "IT011",
+    "message": "The entire office has lost network connectivity. Essential operations are stopped, and there is no alternative connection.",
+    "expected_category": "network",
+    "expected_urgency": 2,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "IT012",
+    "message": "Excel crashes whenever I open a workbook.",
+    "expected_category": "software",
+    "expected_urgency": null,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": true
+  },
+  {
+    "id": "IT013",
+    "message": "The desktop email app crashes, but webmail works and I can continue handling my messages.",
+    "expected_category": "software",
+    "expected_urgency": 1,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "IT014",
+    "message": "The document editor is deleting saved content while we work. We cannot prevent further data loss and have stopped using it.",
+    "expected_category": "software",
+    "expected_urgency": 2,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "IT015",
+    "message": "The application toolbar icons look blurry, but every feature works and my work is unaffected.",
+    "expected_category": "software",
+    "expected_urgency": 0,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "IT016",
+    "message": "It's broken.",
+    "expected_category": null,
+    "expected_urgency": null,
+    "expected_missing_routing_info": true,
+    "expected_missing_urgency_info": true
+  },
+  {
+    "id": "IT017",
+    "message": "I can't connect.",
+    "expected_category": null,
+    "expected_urgency": null,
+    "expected_missing_routing_info": true,
+    "expected_missing_urgency_info": true
+  },
+  {
+    "id": "IT018",
+    "message": "Could IT run a general training session next month? This is optional and doesn't block anyone's work.",
+    "expected_category": "other",
+    "expected_urgency": 0,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  }
+]

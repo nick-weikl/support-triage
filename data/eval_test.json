@@ -1,0 +1,82 @@
+[
+  {
+    "id": "NEW001",
+    "message": "My docking station no longer detects either external display.",
+    "expected_category": "hardware",
+    "expected_urgency": null,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": true
+  },
+  {
+    "id": "NEW002",
+    "message": "The office mouse stopped responding. I borrowed a spare and can continue working, but please replace the faulty one.",
+    "expected_category": "hardware",
+    "expected_urgency": 1,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "NEW003",
+    "message": "How do I update my recovery phone number? I can sign in normally, and this isn't affecting my work.",
+    "expected_category": "identity_and_access",
+    "expected_urgency": 0,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "NEW004",
+    "message": "My account says it is locked. I cannot access any work systems, have no alternative account, and must submit payroll in fifteen minutes.",
+    "expected_category": "identity_and_access",
+    "expected_urgency": 2,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "NEW005",
+    "message": "The VPN connects, then drops after about thirty seconds.",
+    "expected_category": "network",
+    "expected_urgency": null,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": true
+  },
+  {
+    "id": "NEW006",
+    "message": "The wired office connection is down. Wi-Fi works, so I can continue working while you investigate.",
+    "expected_category": "network",
+    "expected_urgency": 1,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "NEW007",
+    "message": "The presentation app crashes when I start the slideshow. I have to present in five minutes, and there is no other device or application available.",
+    "expected_category": "software",
+    "expected_urgency": 2,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "NEW008",
+    "message": "The calendar app shows a slightly misaligned icon. All features work, and my work is unaffected.",
+    "expected_category": "software",
+    "expected_urgency": 0,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  },
+  {
+    "id": "NEW009",
+    "message": "It keeps failing again. Can someone take a look?",
+    "expected_category": null,
+    "expected_urgency": null,
+    "expected_missing_routing_info": true,
+    "expected_missing_urgency_info": true
+  },
+  {
+    "id": "NEW010",
+    "message": "My keyboard has a broken key, but a spare works. My main issue is that the email app crashes whenever I send a message. Webmail lets me continue working.",
+    "expected_category": "software",
+    "expected_urgency": 1,
+    "expected_missing_routing_info": false,
+    "expected_missing_urgency_info": false
+  }
+]
