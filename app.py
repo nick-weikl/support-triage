@@ -1,6 +1,6 @@
 import streamlit as st
 from triage import triage_ticket
-from storage import initialize_database, save_ticket, load_tickets
+from storage import initialize_database, save_ticket, load_tickets, update_ticket
 
 initialize_database()
 
@@ -10,10 +10,23 @@ message = st.text_area("Report Issue")
 
 if st.button("Analyze Ticket"):
     if message.strip():
-        with st.spinner("Analyzing ticket..."):
-            result = triage_ticket(message.strip())
-            ticket_id = save_ticket(message.strip(), result)
+        try:
+            with st.spinner("Analyzing ticket..."):
+                result = triage_ticket(message.strip())
+                ticket_id = save_ticket(message.strip(), result)
+
+        except Exception:
+            st.error(
+                "The ticket could not be analyzed or saved. "
+                "Your message is still available above. Please try again."
+            )
+
+        else:
             st.session_state.latest_result = result
+            st.session_state.original_message = message.strip()
+            st.session_state.ticket_id = ticket_id
+            st.session_state.follow_up_history = []
+
     else:
         st.warning("Please enter an issue before analyzing.")
 
@@ -52,6 +65,78 @@ if "latest_result" in st.session_state:
         st.warning("Needs human review before routing.")
     else:
         st.success("Ready to route.")
+
+    follow_up_questions = {
+        "affected_system": "Which device, application, or service is affected?",
+        "work_impact": "What work is this preventing you from doing?",
+        "workaround": "Is there another way you can continue working?",
+        "deadline": "Is there a deadline this issue puts at risk?",
+    }
+
+    selected_question = result["clarifying_question"]
+
+    if selected_question != "none":
+        st.subheader("Suggested follow-up")
+
+        question_text = follow_up_questions[selected_question]
+        st.write(question_text)
+
+        answer_key = (
+            f"follow_up_{st.session_state.ticket_id}_"
+            f"{len(st.session_state.follow_up_history)}"
+        )
+
+        answer = st.text_area("Your answer", key=answer_key)
+
+        if st.button("Update triage"):
+            if answer.strip():
+                updated_history = (
+                    st.session_state.follow_up_history
+                    + [{
+                        "question": question_text,
+                        "answer": answer.strip(),
+                    }]
+                )
+
+                context_parts = [
+                    "Original employee report:",
+                    st.session_state.original_message,
+                ]
+
+                for exchange in updated_history:
+                    context_parts.extend([
+                        "",
+                        f"IT follow-up: {exchange['question']}",
+                        f"Employee answer: {exchange['answer']}",
+                    ])
+
+                combined_context = "\n".join(context_parts)
+
+                try:
+                    with st.spinner("Updating triage..."):
+                        updated_result = triage_ticket(combined_context)
+
+                        update_ticket(
+                            st.session_state.ticket_id,
+                            combined_context,
+                            updated_result,
+                        )
+
+                except Exception:
+                    st.error(
+                        "The update could not be analyzed or saved. "
+                        "Your answer and the previous results have been kept. "
+                        "Please try again."
+                    )
+
+                else:
+                    st.session_state.follow_up_history = updated_history
+                    st.session_state.latest_result = updated_result
+                    st.rerun()
+
+            else:
+                st.warning("Please enter an answer before updating.")
+
 
     with st.expander("View raw results"):
         st.json(result)

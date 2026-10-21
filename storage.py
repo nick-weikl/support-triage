@@ -88,6 +88,45 @@ def load_tickets():
         connection.close()
 
 
+def update_ticket(ticket_id, message, result):
+    connection = sqlite3.connect(DB_PATH)
+
+    try:
+        with connection:
+            cursor = connection.execute(
+                """
+                UPDATE tickets
+                SET message = ?,
+                    category = ?,
+                    assigned_team = ?,
+                    urgency = ?,
+                    confidence = ?,
+                    needs_review = ?,
+                    missing_routing_info = ?,
+                    missing_urgency_info = ?
+                WHERE id = ?
+                """,
+                (
+                    message,
+                    result["category"],
+                    result["assigned_team"],
+                    result["urgency"],
+                    result["confidence"],
+                    int(result["needs_review"]),
+                    result["missing_routing_info"],
+                    result["missing_urgency_info"],
+                    ticket_id,
+                ),
+            )
+
+            if cursor.rowcount != 1:
+                raise ValueError(
+                    f"Ticket {ticket_id} was not found; update was not saved."
+                )
+    finally:
+        connection.close()
+
+
 if __name__ == "__main__":
     initialize_database()
     print(f"Database ready: {DB_PATH}")

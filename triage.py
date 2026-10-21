@@ -58,6 +58,22 @@ def triage_ticket(message):
                         "reported facts make urgency unclear."
                     ),
                 ),
+                "clarifying_question": Choice(
+                    instructions=(
+                        "Select the single most useful follow-up question for the employee's "
+                        "message using the shared urgency rubric. Prioritize identifying the affected "
+                        "device or service when routing is unclear. Otherwise, select a question that "
+                        "resolves missing urgency information. Do not ask for information already provided. " 
+                        "Select none when enough information exists to route and assess urgency."
+                    ),
+                    criteria={
+                        "affected_system": "Which device, application, or service is affected?",
+                        "work_impact": "What work is this preventing you from doing?",
+                        "workaround": "Is there another way you can continue working?",
+                        "deadline": "Is there a deadline this issue puts at risk?",
+                        "none": "No clarification needed"
+                    }
+                )
             },
         )
 
@@ -66,6 +82,7 @@ def triage_ticket(message):
     urgency = response.scores["urgency"].score
     missing_routing_info = response.nouls["missing_routing_info"].noul
     missing_urgency_info = response.nouls["missing_urgency_info"].noul
+    clarifying_question = response.choices["clarifying_question"].choice
 
     teams = {
         "hardware": "Hardware Support",
@@ -89,5 +106,6 @@ def triage_ticket(message):
         "urgency": urgency,
         "needs_review": needs_review,
         "missing_routing_info": missing_routing_info,
-        "missing_urgency_info": missing_urgency_info
+        "missing_urgency_info": missing_urgency_info,
+        "clarifying_question": clarifying_question
     }
